@@ -16,7 +16,7 @@ echo -n "Please enter your email address: ($(git config user.email)) "
 read email_address
 [[ -z "${email_address}" ]] && email_address="$(git config user.email)"
 
-sed -i '' "s/AUTHOR_NAME/${author_name}/g" README.md REPO_NAME.gemspeci
+sed -i '' "s/AUTHOR_NAME/${author_name}/g" README.md REPO_NAME.gemspec
 sed -i '' "s/LICENSE_NAME/${license_name}/g" LICENSE REPO_NAME.gemspec
 sed -i '' "s/REPO_NAME/${repo_name}/g" README.md spec/spec_helper.rb REPO_NAME.gemspec
 sed -i '' "s/EMAIL_ADDRESS/${email_address}/g" REPO_NAME.gemspec
@@ -30,5 +30,5 @@ rm -rf .git
 git init
 git remote add origin "git@github.com:${author_name}/${repo_name}"
 
-rm Makefile
+rm fill.sh
 
