@@ -16,5 +16,6 @@ SHORT_DESCRIPTION
     gem install REPO_NAME
 
 ## License
+
 REPO_NAME is released under the MIT License. See the bundled LICENSE file for details.
 
