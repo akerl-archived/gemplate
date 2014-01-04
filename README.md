@@ -10,4 +10,6 @@ Template for gem creation, containing helpful meta boilerplate
     ./fill.sh
 
 ## License
+
 gemplate is released under the MIT License.
+
