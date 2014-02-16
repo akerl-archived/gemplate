@@ -1,7 +1,7 @@
 gemplate
 =========
 
-[![MIT Licensed](http://img.shields.io/badge/license-MIT-green.svg)](https://tldrlegal.com/license/mit-license)
+[![MIT Licensed](https://img.shields.io/badge/license-MIT-green.svg)](https://tldrlegal.com/license/mit-license)
 
 Template for gem creation, containing helpful meta boilerplate
 

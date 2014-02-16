@@ -1,11 +1,12 @@
 REPO_NAME
 =========
 
-[![Gem Version](https://badge.fury.io/rb/REPO_NAME.png)](http://badge.fury.io/rb/REPO_NAME)
-[![Dependency Status](https://gemnasium.com/AUTHOR_NAME/REPO_NAME.png)](https://gemnasium.com/AUTHOR_NAME/REPO_NAME)
-[![Code Climate](https://codeclimate.com/github/AUTHOR_NAME/REPO_NAME.png)](https://codeclimate.com/github/AUTHOR_NAME/REPO_NAME)
-[![Coverage Status](https://coveralls.io/repos/AUTHOR_NAME/REPO_NAME/badge.png?branch=master)](https://coveralls.io/r/AUTHOR_NAME/REPO_NAME?branch=master)
-[![Build Status](https://travis-ci.org/AUTHOR_NAME/REPO_NAME.png?branch=master)](https://travis-ci.org/AUTHOR_NAME/REPO_NAME)
+[![Gem Version](https://img.shields.io/gem/v/REPO_NAME.svg)](https://rubygems.org/gems/REPO_NAME)
+[![Dependency Status](https://img.shields.io/gemnasium/AUTHOR_NAME/REPO_NAME.svg)](https://gemnasium.com/AUTHOR_NAME/REPO_NAME)
+[![Code Climate](https://img.shields.io/codeclimate/github/AUTHOR_NAME/REPO_NAME.svg)](https://codeclimate.com/github/AUTHOR_NAME/REPO_NAME)
+[![Coverage Status](https://img.shields.io/coveralls/AUTHOR_NAME/REPO_NAME.svg)](https://coveralls.io/r/AUTHOR_NAME/REPO_NAME)
+[![Build Status](https://img.shields.io/travis/AUTHOR_NAME/REPO_NAME.svg)](https://travis-ci.org/AUTHOR_NAME/REPO_NAME)
+[![MIT Licensed](https://img.shields.io/badge/license-MIT-green.svg)](https://tldrlegal.com/license/mit-license)
 
 SHORT_DESCRIPTION
 
