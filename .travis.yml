@@ -7,8 +7,5 @@ rvm:
 notifications:
   email: false
   irc:
-    channels:
-      - ircs://irc.oftc.net:6697#akerl
-    channel_key: sekrit
     template:
       - '%{repository}/%{branch}/%{build_number}: %{message} -- %{build_url}'
