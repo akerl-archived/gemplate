@@ -17,13 +17,13 @@ read email_address
 [[ -z "${email_address}" ]] && email_address="$(git config user.email)"
 
 irc_channel="$(
-    security find-generic-password -s TravisIRC
-    | awk '/acct/ {print $1}'
+    security find-generic-password -s TravisIRC \
+    | awk '/acct/ {print $1}' \
     | sed 's/^"acct"<blob>="//;s/"$//'
 )"
 irc_key="$(
-    security find-generic-password -g -s TravisIRC 2>&1
-    | awk '/^password/ {print $2}'
+    security find-generic-password -g -s TravisIRC 2>&1 \
+    | awk '/^password/ {print $2}' \
     | sed 's/^"//;s/"$//'
 )"
 echo -n "Please enter the IRC channel/key for Travis notifications: ($irc_channel,$irc_key)"
