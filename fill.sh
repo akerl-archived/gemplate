@@ -40,10 +40,12 @@ mv REPO_NAME.gemspec ${repo_name}.gemspec
 mv lib/REPO_NAME.rb lib/${repo_name}.rb
 mv spec/REPO_NAME_spec.rb spec/${repo_name}_spec.rb
 
-travis encrypt -p --add notifications.irc.channels "$irc_stanza"
-
-rm -rf .git fill.sh
+rm -rf .git
 
 git init
 git remote add origin "git@github.com:${author_name}/${repo_name}"
+
+travis encrypt -p --add notifications.irc.channels "$irc_stanza"
+
+rm fill.sh
 
