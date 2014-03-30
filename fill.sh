@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-echo -n "Please enter your username: (${USER}) "
+echo -n "Please enter your GitHub username: (${USER}) "
 read author_name
 [[ -z "${author_name}" ]] && author_name="${USER}"
 
