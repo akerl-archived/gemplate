@@ -29,12 +29,12 @@ irc_stanza = UserInput.new(
 puts 'Available licenses can be found here: https://github.com/akerl/licenses'
 license = UserInput.new(message: 'License', default: 'MIT').ask
 
-new_gem = Gemplate.new(
-  name: name
-  user: user
-  full_name: full_name
-  email: email
-  irc_stanza: irc_stanza
+Gemplate.new(
+  name: name,
+  user: user,
+  full_name: full_name,
+  email: email,
+  irc_stanza: irc_stanza,
   license: license
 ).create
 
