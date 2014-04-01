@@ -17,11 +17,25 @@ email = Rugged::Config.global['user.email']
 email = UserInput.new(message: 'Email address', default: email).ask
 
 irc_command = `security find-generic-password -g -s TravisIRC 2>&1`.split "\n"
-irc_channel = irc_command.each_with_object(['', '']) do |x, o|
+irc_stanza = irc_command.each_with_object(['', '']) do |x, o|
   o[1] = x.split[1][1..-2] if x.match(/^password/)
   o[0] = x.split('=')[1][1..-2] if x.match(/^[\s"]*acct/)
 end.join(',')
-irc_channel = UserInput.new(
+irc_stanza = UserInput.new(
   message: 'IRC channel/key',
-  default: irc_channel
+  default: irc_stanza
 ).ask
+
+puts 'Available licenses can be found here: https://github.com/akerl/licenses'
+license = UserInput.new(message: 'License', default: 'MIT').ask
+
+new_gem = Gemplate.new(
+  name: name
+  user: user
+  full_name: full_name
+  email: email
+  irc_stanza: irc_stanza
+  license: license
+).create
+
+puts 'New gem has been created!'

@@ -21,9 +21,10 @@ module Gemplate
   class Gem
     def initialize(params = {})
       @name = params[:name]
-      @author = params[:author]
+      @user = params[:user]
+      @full_name = params[:full_name]
       @email = params[:email]
-      @travis_key = params[:travis_key]
+      @irc_stanza = params[:irc_stanza]
       @license = params[:license]
     end
 
