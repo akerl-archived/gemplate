@@ -1,4 +1,5 @@
 require 'travis'
+require 'rugged'
 require 'pathname'
 require 'fileutils'
 require 'curb'
@@ -74,6 +75,8 @@ module Gemplate
     end
 
     def make_repo
+      Rugged::Repository.init_at '.'
+      `git remote add origin "git@github.com:#{@user}/#{@name}"`
     end
 
     def configure_travis
