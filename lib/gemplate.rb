@@ -1,6 +1,7 @@
 require 'travis'
 require 'pathname'
 require 'fileutils'
+require 'curb'
 
 ##
 # Bootstrap tool for new gems
@@ -15,6 +16,7 @@ module Gemplate
   end
 
   TEMPLATE = "#{Pathname.new(__FILE__).parent.parent}/template"
+  LICENSE_URL = 'https://raw.githubusercontent.com/akerl/licenses/master'
 
   ##
   # Gem directory object
@@ -64,6 +66,11 @@ module Gemplate
     end
 
     def add_license
+      url = "#{LICENSE_URL}/#{@license}.txt"
+      File.open('LICENSE', 'w') do |fh|
+        text = Curl::Easy.perform(url).body_str
+        fh.write text
+      end
     end
 
     def make_repo
