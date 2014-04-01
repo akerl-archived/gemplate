@@ -14,7 +14,7 @@ module Gemplate
     end
   end
 
-  TEMPLATE = "#{Pathname.new(__FILE__).parent.parent}/template/"
+  TEMPLATE = "#{Pathname.new(__FILE__).parent.parent}/template"
 
   ##
   # Gem directory object
@@ -30,7 +30,6 @@ module Gemplate
 
     def create
       create_directory
-      copy_template
       process_variables
       make_repo
       configure_travis
@@ -39,13 +38,9 @@ module Gemplate
     private
 
     def create_directory
-      fail "#{@name} already exists" if File.exists @name
-      Dir.mkdir @name
+      fail "#{@name} already exists" if File.exist? @name
+      FileUtils.cp_r TEMPLATE, @name
       Dir.chdir @name
-    end
-
-    def copy_template
-      FileUtils.cp_r TEMPLATE, '.'
     end
 
     def process_variables
