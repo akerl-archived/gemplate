@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+
+require 'gemplate'
+require 'userinput'
+require 'rugged'
+
+name = ARGV.first
+name = UserInput.new(message: 'Gem name', default: name).ask
+
+user = Rugged::Config.global['github.user'] || ENV['USER']
+user = UserInput.new(message: 'GitHub username', default: user).ask
+
+email = 

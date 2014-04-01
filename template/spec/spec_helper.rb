@@ -7,4 +7,4 @@ SimpleCov.start do
 end
 
 require 'rspec'
-require 'gemplate'
+require 'REPO_NAME'
