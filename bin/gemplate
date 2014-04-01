@@ -10,4 +10,18 @@ name = UserInput.new(message: 'Gem name', default: name).ask
 user = Rugged::Config.global['github.user'] || ENV['USER']
 user = UserInput.new(message: 'GitHub username', default: user).ask
 
-email = 
+full_name = Rugged::Config.global['user.name']
+full_name = UserInput.new(message: 'Full name', default: full_name).ask
+
+email = Rugged::Config.global['user.email']
+email = UserInput.new(message: 'Email address', default: email).ask
+
+irc_command = `security find-generic-password -g -s TravisIRC 2>&1`.split "\n"
+irc_channel = irc_command.each_with_object(['', '']) do |x, o|
+  o[1] = x.split[1][1..-2] if x.match(/^password/)
+  o[0] = x.split('=')[1][1..-2] if x.match(/^[\s"]*acct/)
+end.join(',')
+irc_channel = UserInput.new(
+  message: 'IRC channel/key',
+  default: irc_channel
+).ask

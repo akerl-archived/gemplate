@@ -1,5 +1,6 @@
 require 'travis'
 require 'pathname'
+require 'fileutils'
 
 ##
 # Bootstrap tool for new gems
@@ -27,6 +28,32 @@ module Gemplate
     end
 
     def create
+      create_directory
+      copy_template
+      process_variables
+      make_repo
+      configure_travis
+    end
+
+    private
+
+    def create_directory
+      fail "#{@name} already exists" if File.exists @name
+      Dir.mkdir @name
+      Dir.chdir @name
+    end
+
+    def copy_template
+      FileUtils.cp_r TEMPLATE, '.'
+    end
+
+    def process_variables
+    end
+
+    def make_repo
+    end
+
+    def configure_travis
     end
   end
 end
