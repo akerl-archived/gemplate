@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
 
   s.summary     = ''
   s.description = ""
-  s.authors     = ['LICENSE_NAME']
+  s.authors     = ['FULL_NAME']
   s.email       = 'EMAIL_ADDRESS'
   s.homepage    = 'https://github.com/AUTHOR_NAME/REPO_NAME'
   s.license     = 'MIT'

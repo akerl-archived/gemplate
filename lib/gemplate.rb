@@ -30,7 +30,9 @@ module Gemplate
 
     def create
       create_directory
-      process_variables
+      process_templates
+      adjust_files
+      add_license
       make_repo
       configure_travis
     end
@@ -43,7 +45,25 @@ module Gemplate
       Dir.chdir @name
     end
 
-    def process_variables
+    def process_templates
+      Dir.glob('**/*').each do |path|
+        next unless File.file? path
+        text = File.read path
+        [[/AUTHOR_NAME/, @user], [/LICENSE_NAME/, @license],
+         [/FULL_NAME/, @full_name], [/REPO_NAME/, @name],
+         [/EMAIL_ADDRESS/, @email]].each { |regex, new| text.gsub! regex, new }
+        File.open(path, 'w') { |fh| fh.write text }
+      end
+    end
+
+    def adjust_files
+      moves = [['REPO_NAME.gemspec', "#{@name}.gemspec"],
+               ['lib/REPO_NAME.rb', "lib/#{@name}.rb"],
+               ['spec/REPO_NAME_spec.rb', "spec/#{@name}_spec.rb"]]
+      moves.each { |original, new| FileUtils.move original, new }
+    end
+
+    def add_license
     end
 
     def make_repo
