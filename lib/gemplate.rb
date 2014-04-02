@@ -80,6 +80,7 @@ module Gemplate
     end
 
     def configure_travis
+      `travis encrypt -p --add notifications.irc.channels #{@irc_stanza}`
     end
   end
 end
