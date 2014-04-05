@@ -57,13 +57,22 @@ module Gemplate
       end
     end
 
+    def replacements
+      [
+        [/AUTHOR_NAME/, @user],
+        [/LICENSE_NAME/, @license],
+        [/FULL_NAME/, @full_name],
+        [/REPO_NAME/, @name],
+        [/EMAIL_ADDRESS/, @email],
+        [/CURRENT_YEAR/, Time.now.strftime('%Y')]
+      ]
+    end
+
     def process_templates
       Dir.glob('**/*').each do |path|
         next unless File.file? path
         text = File.read path
-        [[/AUTHOR_NAME/, @user], [/LICENSE_NAME/, @license],
-         [/FULL_NAME/, @full_name], [/REPO_NAME/, @name],
-         [/EMAIL_ADDRESS/, @email]].each { |regex, new| text.gsub! regex, new }
+        replacements.each { |regex, new| text.gsub! regex, new }
         File.open(path, 'w') { |fh| fh.write text }
       end
     end
