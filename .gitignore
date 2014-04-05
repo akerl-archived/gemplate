@@ -3,3 +3,4 @@ coverage/
 .coveralls.yml
 .bundle
 Gemfile.lock
+my_gem

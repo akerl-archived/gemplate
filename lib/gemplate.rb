@@ -33,11 +33,13 @@ module Gemplate
 
     def create
       create_directory
+      Dir.chdir @name
+      add_license
       process_templates
       adjust_files
-      add_license
       make_repo
       configure_travis
+      Dir.chdir '..'
     end
 
     private
@@ -45,7 +47,14 @@ module Gemplate
     def create_directory
       fail "#{@name} already exists" if File.exist? @name
       FileUtils.cp_r TEMPLATE, @name
-      Dir.chdir @name
+    end
+
+    def add_license
+      url = "#{LICENSE_URL}/#{@license}.txt"
+      File.open('LICENSE', 'w') do |fh|
+        text = Curl::Easy.perform(url).body_str
+        fh.write text
+      end
     end
 
     def process_templates
@@ -64,14 +73,6 @@ module Gemplate
                ['lib/REPO_NAME.rb', "lib/#{@name}.rb"],
                ['spec/REPO_NAME_spec.rb', "spec/#{@name}_spec.rb"]]
       moves.each { |original, new| FileUtils.move original, new }
-    end
-
-    def add_license
-      url = "#{LICENSE_URL}/#{@license}.txt"
-      File.open('LICENSE', 'w') do |fh|
-        text = Curl::Easy.perform(url).body_str
-        fh.write text
-      end
     end
 
     def make_repo
