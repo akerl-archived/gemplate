@@ -52,8 +52,11 @@ module Gemplate
     def add_license
       url = "#{LICENSE_URL}/#{@license}.txt"
       File.open('LICENSE', 'w') do |fh|
-        text = Curl::Easy.perform(url).body_str
-        fh.write text
+        license = Curl::Easy.perform(url)
+        if license.response_code == 404
+          fail ArgumentError, 'Invalid license name provided'
+        end
+        fh.write license.body_str
       end
     end
 
@@ -91,11 +94,26 @@ module Gemplate
 
     def configure_travis
       crypter = Travis::CLI::Encrypt.new
-      crypter.parse [
-        '--skip-completion-check',
-        'encrypt', '-p', '--add', 'notifications.irc.channels', @irc_stanza
-      ]
+      args = ['encrypt', '--skip-completion-check', '--explode', '-p',
+              '--add', 'notifications.irc.channels', @irc_stanza]
+      crypter.parse args
       crypter.execute
+    rescue Travis::Client::NotLoggedIn
+      puts 'Travis IRC configuration failed; ' + \
+        'make sure the repo exists on GitHub and Travis, then run:' + \
+        "\ntravis #{args.join ' '}"
+    end
+  end
+end
+
+module Travis
+  module CLI
+    ##
+    # Adjust Travis to raise instead of shouting
+    class ApiCommand
+      def authenticate
+        fail Travis::Client::NotLoggedIn if access_token.nil?
+      end
     end
   end
 end
