@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'userinput', '~> 0.0.2'
   s.add_dependency 'curb', '~> 0.8.5'
 
-  s.add_development_dependency 'rubocop', '~> 0.19.0'
+  s.add_development_dependency 'rubocop', '~> 0.20.0'
   s.add_development_dependency 'rake', '~> 10.2.1'
   s.add_development_dependency 'coveralls', '~> 0.7.0'
   s.add_development_dependency 'rspec', '~> 2.14.1'
