@@ -92,6 +92,7 @@ module Gemplate
     def configure_travis
       crypter = Travis::CLI::Encrypt.new
       crypter.parse [
+        '--skip-completion-check',
         'encrypt', '-p', '--add', 'notifications.irc.channels', @irc_stanza
       ]
       crypter.execute
