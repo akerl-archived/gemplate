@@ -90,10 +90,11 @@ module Gemplate
     end
 
     def configure_travis
-      args = [
+      crypter = Travis::CLI::Encrypt.new
+      crypter.parse [
         'encrypt', '-p', '--add', 'notifications.irc.channels', @irc_stanza
       ]
-      Travis::CLI.run(args)
+      crypter.execute
     end
   end
 end
