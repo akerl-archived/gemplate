@@ -101,7 +101,7 @@ module Gemplate
     rescue Travis::Client::NotLoggedIn
       puts 'Travis IRC configuration failed; ' + \
         'make sure the repo exists on GitHub and Travis, then run:' + \
-        "\ntravis #{args.join ' '}"
+        "\n   travis #{args.join ' '}"
     end
   end
 end
