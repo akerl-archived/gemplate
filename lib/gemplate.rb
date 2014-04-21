@@ -49,6 +49,11 @@ module Gemplate
       FileUtils.cp_r TEMPLATE, @name
     end
 
+    def dependencies
+      source = "#{TEMPLATE}/../gemplate.gemspec"
+      File.read(source).lines.select { |x| x.include? 's.add_dev' }.join.strip
+    end
+
     def add_license
       url = "#{LICENSE_URL}/#{@license}.txt"
       File.open('LICENSE', 'w') do |fh|
@@ -67,7 +72,8 @@ module Gemplate
         [/FULL_NAME/, @full_name],
         [/REPO_NAME/, @name],
         [/EMAIL_ADDRESS/, @email],
-        [/CURRENT_YEAR/, Time.now.strftime('%Y')]
+        [/CURRENT_YEAR/, Time.now.strftime('%Y')],
+        [/#DEV_DEPS/, dependencies]
       ]
     end
 
