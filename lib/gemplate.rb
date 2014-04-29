@@ -101,7 +101,7 @@ module Gemplate
     def configure_travis
       crypter = Travis::CLI::Encrypt.new
       args = ['encrypt', '--skip-completion-check', '--explode', '-p',
-              '--add', 'notifications.irc.channels', @irc_stanza]
+              '--add', 'notifications.irc.channels', "'#{@irc_stanza}'"]
       crypter.parse args
       crypter.execute
     rescue Travis::Client::NotLoggedIn
