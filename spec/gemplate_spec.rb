@@ -29,7 +29,7 @@ describe Gemplate do
     describe '#create' do
       it 'makes a directory from the template' do
         subject.create
-        expect(Dir.exist? 'gemplate').to be_true
+        expect(Dir.exist? 'gemplate').to be_truthy
       end
 
       it 'raises an error if the directory already exists' do
@@ -39,7 +39,7 @@ describe Gemplate do
 
       it 'adds a license file' do
         subject.create
-        expect(File.exist? 'gemplate/LICENSE').to be_true
+        expect(File.exist? 'gemplate/LICENSE').to be_truthy
       end
 
       it 'fails if you try to pull a non-existent license' do
@@ -61,13 +61,13 @@ describe Gemplate do
 
       it 'adjusts file names' do
         subject.create
-        expect(File.exist? 'gemplate/gemplate.gemspec').to be_true
-        expect(File.exist? 'gemplate/REPO_NAME.gemspec').to be_false
+        expect(File.exist? 'gemplate/gemplate.gemspec').to be_truthy
+        expect(File.exist? 'gemplate/REPO_NAME.gemspec').to be_falsey
       end
 
       it 'makes the git repo' do
         subject.create
-        expect(Dir.exist? 'gemplate/.git').to be_true
+        expect(Dir.exist? 'gemplate/.git').to be_truthy
         expect(File.read 'gemplate/.git/config').to match(/remote "origin"/)
       end
 
