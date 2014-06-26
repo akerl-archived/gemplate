@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.executables = ['gemplate']
 
   s.add_dependency 'travis', '~> 1.6.8'
-  s.add_dependency 'rugged', '~> 0.19.0'
+  s.add_dependency 'rugged', '~> 0.21.0'
   s.add_dependency 'userinput', '~> 0.0.2'
   s.add_dependency 'curb', '~> 0.8.5'
 
