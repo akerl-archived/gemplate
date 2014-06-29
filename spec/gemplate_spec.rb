@@ -3,7 +3,7 @@ require 'fileutils'
 
 describe Gemplate do
   describe '#new' do
-    it 'creates cache objects' do
+    it 'creates gem objects' do
       expect(Gemplate.new).to be_an_instance_of Gemplate::Gem
     end
   end
@@ -68,7 +68,13 @@ describe Gemplate do
       it 'makes the git repo' do
         subject.create
         expect(Dir.exist? 'gemplate/.git').to be_truthy
-        expect(File.read 'gemplate/.git/config').to match(/remote "origin"/)
+        [
+          /remote\.origin\.url/,
+          /branch\.master\.remote=origin/,
+          %r{branch\.master\.merge=refs\/heads\/master}
+        ].each do |regex|
+          expect(`git config -f gemplate/.git/config -l`).to match(regex)
+        end
       end
 
       it 'configures the IRC key for Travis' do
