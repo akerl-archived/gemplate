@@ -102,14 +102,25 @@ module Gemplate
 
     def configure_travis
       crypter = Travis::CLI::Encrypt.new
-      args = ['encrypt', '--skip-completion-check', '--explode', '-p',
-              '--add', 'notifications.irc.channels', "'#{@irc_stanza}'"]
-      crypter.parse args
+      crypter.parse travis_args
       crypter.execute
     rescue Travis::Client::NotLoggedIn
-      puts 'Travis IRC configuration failed; ' + \
-        'make sure the repo exists on GitHub and Travis, then run:' + \
-        "\n   travis #{args.join ' '}"
+      puts travis_help
+    end
+
+    private
+
+    def travis_args
+      [
+        'encrypt', '--skip-completion-check', '--no-interactive', '--explode',
+        '-p', '--add', 'notifications.irc.channels', "'#{@irc_stanza}'"
+      ]
+    end
+
+    def travis_help
+      'Travis IRC configuration failed; ' + \
+      'make sure the repo exists on GitHub and Travis, then run:' + \
+      "\n   travis #{travis_args.join ' '}"
     end
   end
 end
@@ -121,6 +132,19 @@ module Travis
     class ApiCommand
       def authenticate
         fail Travis::Client::NotLoggedIn if access_token.nil?
+      end
+    end
+  end
+end
+
+##
+# Reopen Travis
+module Travis
+  module CLI
+    ##
+    # Patch Encrypt to not print to stderr
+    class Encrypt
+      def info(*_)
       end
     end
   end
