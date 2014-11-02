@@ -104,9 +104,8 @@ module Gemplate
       crypter = Travis::CLI::Encrypt.new
       crypter.parse travis_args
       crypter.execute
-    rescue Travis::Client::Error, Travis::Client::NotLoggedIn
-      puts travis_login_help unless system('travis whoami &>/dev/null')
-      puts travis_irc_help
+    rescue Travis::Client::NotLoggedIn
+      puts travis_help
     end
 
     private
@@ -118,11 +117,7 @@ module Gemplate
       ]
     end
 
-    def travis_login_help
-      "You aren't authenticated to TravisCI; run `travis login` to fix this"
-    end
-
-    def travis_irc_help
+    def travis_help
       'Travis IRC configuration failed; ' + \
       'make sure the repo exists on GitHub and Travis, then run:' + \
       "\n   travis #{travis_args.join ' '}"
