@@ -19,6 +19,8 @@ cd place/where/i/keep/my/code/
 gemplate my_gem
 ```
 
+Gemplate will try to parse IRC details for TravisCI out of Keychain. To set this up, add a password whose item name is "TravisIRC", where the account name is the IRC server/channel and the password is the channel key, like "ircs://irc.oftc.net#mychannel" and "hunter2".
+
 ## Installation
 
     gem install gemplate
