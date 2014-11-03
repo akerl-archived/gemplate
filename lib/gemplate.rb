@@ -119,8 +119,8 @@ module Gemplate
 
     def travis_help
       'Travis IRC configuration failed; ' + \
-      'make sure the repo exists on GitHub and Travis, then run:' + \
-      "\n   travis #{travis_args.join ' '}"
+        'make sure the repo exists on GitHub and Travis, then run:' + \
+        "\n   travis #{travis_args.join ' '}"
     end
   end
 end
