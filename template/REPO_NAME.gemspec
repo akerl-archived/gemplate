@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'REPO_NAME'
   s.version     = '0.0.1'
-  s.date        = Time.now.strftime("%Y-%m-%d")
+  s.date        = Time.now.strftime('%Y-%m-%d')
 
   s.summary     = ''
   s.description = ""

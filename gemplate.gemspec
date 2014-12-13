@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'gemplate'
   s.version     = '0.1.8'
-  s.date        = Time.now.strftime("%Y-%m-%d")
+  s.date        = Time.now.strftime('%Y-%m-%d')
 
   s.summary     = 'Bootstrap tool for making gems'
   s.description = 'Creates a basic repository layout for a new gem'
