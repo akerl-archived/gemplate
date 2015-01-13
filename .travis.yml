@@ -13,4 +13,4 @@ notifications:
     template:
     - '%{repository}/%{branch}/%{build_number}: %{message} -- %{build_url}'
     channels:
-      secure: dfgPyDmu7m8ZKo/4oViD743hueQ7LmLDmDkqgQ8a0BTOZniOpjbR7HL511VrewASmS5BQ9wU8yRXPdsv69A4OYypgc2fZRChwjalU0em1wgeetPZxOCDfbdEW4hD9UZwfAJO2q61rZAifJIdl6FkeEN0t2J6z+C8pcjJHXDcLa8=
+    - irc.oftc.net#akerl
