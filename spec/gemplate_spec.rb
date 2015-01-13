@@ -76,24 +76,6 @@ describe Gemplate do
           expect(`git config -f gemplate/.git/config -l`).to match(regex)
         end
       end
-
-      it 'configures the IRC key for Travis' do
-        subject.create
-        expect(File.read 'gemplate/.travis.yml').to match(/channels:/)
-      end
-
-      it 'warns if the Travis configuration fails' do
-        gem = Gemplate::Gem.new(
-          name: 'other_gem',
-          user: 'akerl',
-          full_name: 'my_full_name',
-          email: 'my_email@example.org',
-          irc_stanza: 'irc://irc.example.org:6697#channel,password',
-          license: 'MIT'
-        )
-        expect(gem).to receive(:puts).with(/Travis IRC configuration failed/)
-        gem.create
-      end
     end
   end
 end

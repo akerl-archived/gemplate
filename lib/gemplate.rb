@@ -1,4 +1,3 @@
-require 'travis'
 require 'rugged'
 require 'pathname'
 require 'fileutils'
@@ -38,7 +37,6 @@ module Gemplate
       process_templates
       adjust_files
       make_repo
-      configure_travis
       Dir.chdir '..'
     end
 
@@ -73,12 +71,13 @@ module Gemplate
         [/REPO_NAME/, @name],
         [/EMAIL_ADDRESS/, @email],
         [/CURRENT_YEAR/, Time.now.strftime('%Y')],
-        [/#DEV_DEPS/, dependencies]
+        [/#DEV_DEPS/, dependencies],
+        [/IRC_STANZA/, @irc_stanza]
       ]
     end
 
     def process_templates
-      Dir.glob('**/*').each do |path|
+      Dir.glob('**/*', File::FNM_DOTMATCH).each do |path|
         next unless File.file? path
         text = File.read path
         replacements.each { |regex, new| text.gsub! regex, new }
@@ -98,54 +97,6 @@ module Gemplate
       `git remote add origin "git@github.com:#{@user}/#{@name}"`
       `git config branch.master.remote origin`
       `git config branch.master.merge refs/heads/master`
-    end
-
-    def configure_travis
-      crypter = Travis::CLI::Encrypt.new
-      crypter.parse travis_args
-      crypter.execute
-    rescue Travis::Client::NotLoggedIn
-      puts travis_help
-    end
-
-    private
-
-    def travis_args
-      [
-        'encrypt', '--skip-completion-check', '--no-interactive', '--explode',
-        '-p', '--add', 'notifications.irc.channels', "'#{@irc_stanza}'"
-      ]
-    end
-
-    def travis_help
-      'Travis IRC configuration failed; ' + \
-        'make sure the repo exists on GitHub and Travis, then run:' + \
-        "\n   travis #{travis_args.join ' '}"
-    end
-  end
-end
-
-module Travis
-  module CLI
-    ##
-    # Adjust Travis to raise instead of shouting
-    class ApiCommand
-      def authenticate
-        fail Travis::Client::NotLoggedIn if access_token.nil?
-      end
-    end
-  end
-end
-
-##
-# Reopen Travis
-module Travis
-  module CLI
-    ##
-    # Patch Encrypt to not print to stderr
-    class Encrypt
-      def info(*_)
-      end
     end
   end
 end
