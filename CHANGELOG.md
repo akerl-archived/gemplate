@@ -1,3 +1,7 @@
+# 1.0.2 / 2015-07-25
+
+* [BUGFIX] Update rugged dependency to fix https://github.com/libgit2/rugged/issues/475
+
 # 1.0.1 / 2015-05-27
 
 * [ENHANCEMENT] Update Ruby versions in .travis.yml

@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'gemplate'
-  s.version     = '1.0.1'
+  s.version     = '1.0.2'
   s.date        = Time.now.strftime('%Y-%m-%d')
 
   s.summary     = 'Bootstrap tool for making gems'
