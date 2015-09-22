@@ -26,7 +26,6 @@ module Gemplate
       @user = params[:user]
       @full_name = params[:full_name]
       @email = params[:email]
-      @irc_stanza = params[:irc_stanza]
       @license = params[:license]
     end
 
@@ -71,8 +70,7 @@ module Gemplate
         [/REPO_NAME/, @name],
         [/EMAIL_ADDRESS/, @email],
         [/CURRENT_YEAR/, Time.now.strftime('%Y')],
-        [/#DEV_DEPS/, dependencies],
-        [/IRC_STANZA/, @irc_stanza]
+        [/#DEV_DEPS/, dependencies]
       ]
     end
 

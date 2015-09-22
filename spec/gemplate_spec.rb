@@ -15,7 +15,6 @@ describe Gemplate do
         user: 'akerl',
         full_name: 'my_full_name',
         email: 'my_email@example.org',
-        irc_stanza: 'irc://irc.example.org:6697#channel,password',
         license: 'MIT'
       )
     end
@@ -48,7 +47,6 @@ describe Gemplate do
           user: 'akerl',
           full_name: 'my_full_name',
           email: 'my_email@example.org',
-          irc_stanza: 'irc://irc.example.org:6697#channel,password',
           license: 'MIT-3'
         )
         expect { gem.create }.to raise_error ArgumentError

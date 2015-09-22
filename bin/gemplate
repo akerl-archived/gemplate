@@ -17,16 +17,6 @@ full_name = UserInput.new(message: 'Full name', default: full_name).ask
 email = Rugged::Config.global['user.email']
 email = UserInput.new(message: 'Email address', default: email).ask
 
-irc_command = `security find-generic-password -g -s TravisIRC 2>&1`.split "\n"
-irc_stanza = irc_command.each_with_object([nil, nil]) do |x, o|
-  o[1] = x.split[1][1..-2] if x.match(/^password/)
-  o[0] = x.split('=')[1][1..-2] if x.match(/^[\s"]*acct/)
-end.reject(&:empty?).join(',')
-irc_stanza = UserInput.new(
-  message: 'IRC channel/key',
-  default: irc_stanza
-).ask
-
 license_validation = proc do |lname|
   url = "https://raw.githubusercontent.com/akerl/licenses/master/#{lname}.txt"
   Curl::Easy.http_head(url).response_code == 200
@@ -44,7 +34,6 @@ Gemplate.new(
   user: user,
   full_name: full_name,
   email: email,
-  irc_stanza: irc_stanza,
   license: license
 ).create
 

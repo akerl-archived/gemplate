@@ -1,3 +1,9 @@
+# 1.1.0 / 2015-09-21
+
+* [FEATURE] Replace TravisCI with CircleCI
+* [FEATURE] Replace CodeClimate with Codacy
+* [FEATURE] Replace Coveralls with CodeCov
+
 # 1.0.2 / 2015-07-25
 
 * [BUGFIX] Update rugged dependency to fix https://github.com/libgit2/rugged/issues/475
