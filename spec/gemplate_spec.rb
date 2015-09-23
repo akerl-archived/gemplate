@@ -10,6 +10,8 @@ describe Gemplate do
 
   describe Gem do
     let(:subject) do
+      stub_request(:post, 'https://api.github.com/user/repos')
+        .to_return(status: 200)
       Gemplate::Gem.new(
         name: 'gemplate',
         user: 'akerl',

@@ -2,6 +2,8 @@ require 'rugged'
 require 'pathname'
 require 'fileutils'
 require 'curb'
+require 'octoauth'
+require 'octokit'
 
 ##
 # Bootstrap tool for new gems
@@ -24,6 +26,7 @@ module Gemplate
     def initialize(params = {})
       @name = params[:name]
       @user = params[:user]
+      @org = params[:org]
       @full_name = params[:full_name]
       @email = params[:email]
       @license = params[:license]
@@ -92,9 +95,17 @@ module Gemplate
 
     def make_repo
       Rugged::Repository.init_at '.'
-      `git remote add origin "git@github.com:#{@user}/#{@name}"`
+      `git remote add origin "git@github.com:#{@org}/#{@name}"`
       `git config branch.master.remote origin`
       `git config branch.master.merge refs/heads/master`
+      github_api.create_repo(@name, organization: @org, has_wiki: false)
+    end
+
+    def github_api
+      return @api_client if @api_client
+      auth = Octoauth.new note: 'gemplate', scopes: ['repo'], file: :default
+      auth.save
+      @api_client = Octokit::Client.new(access_token: auth.token)
     end
   end
 end

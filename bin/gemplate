@@ -11,6 +11,9 @@ name = UserInput.new(message: 'Gem name', default: name).ask
 user = Rugged::Config.global['github.user'] || ENV['USER']
 user = UserInput.new(message: 'GitHub username', default: user).ask
 
+org = user
+org = UserInput.new(message: 'GitHub organization', default: org).ask
+
 full_name = Rugged::Config.global['user.name']
 full_name = UserInput.new(message: 'Full name', default: full_name).ask
 
@@ -32,6 +35,7 @@ license = UserInput.new(
 Gemplate.new(
   name: name,
   user: user,
+  org: org,
   full_name: full_name,
   email: email,
   license: license

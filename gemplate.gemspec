@@ -16,6 +16,8 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'rugged', '~> 0.23.0'
   s.add_dependency 'userinput', '~> 1.0.0'
+  s.add_dependency 'octoauth', '~> 1.3.0'
+  s.add_dependency 'octokit', '~> 4.1.0'
   s.add_dependency 'curb', '~> 0.8.6'
 
   s.add_development_dependency 'rubocop', '~> 0.34.0'
