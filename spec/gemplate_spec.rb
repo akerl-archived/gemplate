@@ -1,6 +1,7 @@
 require 'spec_helper'
 require 'fileutils'
 
+ROOT = Dir.pwd
 TEST_GEM_NAME = 'gemplate-test'
 
 describe Gemplate do
@@ -17,15 +18,15 @@ describe Gemplate do
         user: 'akerl',
         full_name: 'my_full_name',
         email: 'my_email@example.org',
-        license: 'MIT'
+        license: 'MIT',
+        authfile: '../../spec/creds.yml'
       )
     end
 
-    before(:all) do
-      Dir.chdir '.test'
+    before(:each) do
+      Dir.chdir "#{ROOT}/.test"
       FileUtils.rm_rf TEST_GEM_NAME
     end
-    after(:each) { FileUtils.rm_rf TEST_GEM_NAME }
 
     describe '#create' do
       it 'makes a directory from the template' do
@@ -56,7 +57,8 @@ describe Gemplate do
             user: 'akerl',
             full_name: 'my_full_name',
             email: 'my_email@example.org',
-            license: 'MIT-3'
+            license: 'MIT-3',
+            authfile: '../../spec/creds.yml'
           )
           expect { gem.create }.to raise_error ArgumentError
         end

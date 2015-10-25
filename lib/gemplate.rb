@@ -30,6 +30,7 @@ module Gemplate
       @full_name = params[:full_name]
       @email = params[:email]
       @license = params[:license]
+      @authfile = params[:authfile] || :default
     end
 
     def create
@@ -103,7 +104,7 @@ module Gemplate
 
     def github_api
       return @api_client if @api_client
-      auth = Octoauth.new note: 'gemplate', scopes: ['repo'], file: :default
+      auth = Octoauth.new note: 'gemplate', scopes: ['repo'], file: @authfile
       auth.save
       @api_client = Octokit::Client.new(access_token: auth.token)
     end
