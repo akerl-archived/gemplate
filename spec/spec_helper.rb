@@ -10,8 +10,14 @@ end
 require 'rspec'
 require 'gemplate'
 
-require 'webmock/rspec'
-WebMock.disable_net_connect!(
-  allow_localhost: true,
-  allow: /raw.githubusercontent.com/
-)
+require 'vcr'
+VCR.configure do |c|
+  c.cassette_library_dir = 'spec/fixtures/cassettes'
+  c.hook_into :webmock
+  c.before_record do |i|
+    i.request.headers.delete 'Authorization'
+    %w(Etag X-Github-Request-Id X-Served-By).each do |header|
+      i.response.headers.delete header
+    end
+  end
+end
