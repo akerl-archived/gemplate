@@ -96,14 +96,14 @@ module Gemplate
 
     def make_repo
       Rugged::Repository.init_at '.'
-      `git remote add origin "git@github.com:#{org || @name}/#{@name}"`
+      `git remote add origin "git@github.com:#{org || @user}/#{@name}"`
       `git config branch.master.remote origin`
       `git config branch.master.merge refs/heads/master`
       github_api.create_repo(@name, organization: org, has_wiki: false)
     end
 
     def org
-      @org == @name ? nil : @org
+      @org == @user ? nil : @org
     end
 
     def github_api
