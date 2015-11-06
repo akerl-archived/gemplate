@@ -1,3 +1,8 @@
+# 2.0.0 / 2015-11-05
+
+* [FEATURE] Switch to Mercenary for better CLI interaction
+* [ENHANCEMENT] Add --skip flag to skip GitHub steps
+
 # 1.1.0 / 2015-09-21
 
 * [FEATURE] Replace TravisCI with CircleCI
