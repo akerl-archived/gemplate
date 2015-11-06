@@ -4,41 +4,67 @@ require 'gemplate'
 require 'userinput'
 require 'rugged'
 require 'curb'
+require 'mercenary'
 
-name = ARGV.first
-name = UserInput.new(message: 'Gem name', default: name).ask
+Mercenary.program(:gemplate) do |p|
+  p.version Gemplate::VERSION
+  p.description 'Tool for bootstrapping new gems'
+  p.syntax 'gemplate [options] GEM_NAME'
 
-user = Rugged::Config.global['github.user'] || ENV['USER']
-user = UserInput.new(message: 'GitHub username', default: user).ask
+  p.option :user, '-u', '--user', 'GitHub username'
+  p.option :org, '-o', '--org', 'GitHub organization'
+  p.option :full_name, '-n', '--name', 'Full name'
+  p.option :email, '-e', '--email', 'Email address'
+  p.option :license, '-l', '--license', 'License'
+  p.option :skip_github, '-s', '--skip', 'Skip GitHub steps'
 
-org = user
-org = UserInput.new(message: 'GitHub organization', default: org).ask
+  p.action do |_, options|
+    options[:name] = ARGV.first || UserInput.new(message: 'Gem name').ask
 
-full_name = Rugged::Config.global['user.name']
-full_name = UserInput.new(message: 'Full name', default: full_name).ask
+    unless options[:user]
+      options[:user] = Rugged::Config.global['github.user'] || ENV['USER']
+      options[:user] = UserInput.new(
+        message: 'GitHub username', default: user
+      ).ask
+    end
 
-email = Rugged::Config.global['user.email']
-email = UserInput.new(message: 'Email address', default: email).ask
+    unless options[:org]
+      options[:org] = user
+      options[:org] = UserInput.new(
+        message: 'GitHub organization', default: org
+      ).ask
+    end
 
-license_validation = proc do |lname|
-  url = "https://raw.githubusercontent.com/akerl/licenses/master/#{lname}.txt"
-  Curl::Easy.http_head(url).response_code == 200
+    unless options[:full_name]
+      options[:full_name] = Rugged::Config.global['user.name']
+      options[:full_name] = UserInput.new(
+        message: 'Full name', default: full_name
+      ).ask
+    end
+
+    unless options[:email]
+      options[:email] = Rugged::Config.global['user.email']
+      options[:email] = UserInput.new(
+        message: 'Email address', default: email
+      ).ask
+    end
+
+    license_validation = proc do |x|
+      url = "https://raw.githubusercontent.com/akerl/licenses/master/#{x}.txt"
+      Curl::Easy.http_head(url).response_code == 200
+    end
+
+    unless options[:license]
+      puts 'List of licenses: https://github.com/akerl/licenses'
+      options[:license] = UserInput.new(
+        message: 'License',
+        default: 'MIT',
+        validation: license_validation
+      ).ask
+    end
+
+    Gemplate.new(options).create
+
+    puts 'New gem has been created!'
+  end
 end
-
-puts 'Available licenses can be found here: https://github.com/akerl/licenses'
-license = UserInput.new(
-  message: 'License',
-  default: 'MIT',
-  validation: license_validation
-).ask
-
-Gemplate.new(
-  name: name,
-  user: user,
-  org: org,
-  full_name: full_name,
-  email: email,
-  license: license
-).create
-
-puts 'New gem has been created!'

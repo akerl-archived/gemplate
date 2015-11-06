@@ -1,6 +1,9 @@
+$:.unshift File.expand_path('../lib/', __FILE__)
+require 'gemplate/version'
+
 Gem::Specification.new do |s|
   s.name        = 'gemplate'
-  s.version     = '1.1.2'
+  s.version     = Gemplate::VERSION
   s.date        = Time.now.strftime('%Y-%m-%d')
 
   s.summary     = 'Bootstrap tool for making gems'
@@ -19,6 +22,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'octoauth', '~> 1.3.0'
   s.add_dependency 'octokit', '~> 4.1.0'
   s.add_dependency 'curb', '~> 0.8.6'
+  s.add_dependency 'mercenary', '~> 0.3.4'
 
   s.add_development_dependency 'rubocop', '~> 0.34.0'
   s.add_development_dependency 'rake', '~> 10.4.0'
