@@ -1,3 +1,7 @@
+# 2.0.1 / 2015-11-14
+
+* [BUGFIX] Fix command line tool's argument prompting
+
 # 2.0.0 / 2015-11-05
 
 * [FEATURE] Switch to Mercenary for better CLI interaction

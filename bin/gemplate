@@ -24,28 +24,28 @@ Mercenary.program(:gemplate) do |p|
     unless options[:user]
       options[:user] = Rugged::Config.global['github.user'] || ENV['USER']
       options[:user] = UserInput.new(
-        message: 'GitHub username', default: user
+        message: 'GitHub username', default: options[:user]
       ).ask
     end
 
     unless options[:org]
       options[:org] = user
       options[:org] = UserInput.new(
-        message: 'GitHub organization', default: org
+        message: 'GitHub organization', default: options[:org]
       ).ask
     end
 
     unless options[:full_name]
       options[:full_name] = Rugged::Config.global['user.name']
       options[:full_name] = UserInput.new(
-        message: 'Full name', default: full_name
+        message: 'Full name', default: options[:full_name]
       ).ask
     end
 
     unless options[:email]
       options[:email] = Rugged::Config.global['user.email']
       options[:email] = UserInput.new(
-        message: 'Email address', default: email
+        message: 'Email address', default: options[:email]
       ).ask
     end
 
