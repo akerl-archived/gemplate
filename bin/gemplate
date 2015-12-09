@@ -29,7 +29,7 @@ Mercenary.program(:gemplate) do |p|
     end
 
     unless options[:org]
-      options[:org] = user
+      options[:org] = options[:user]
       options[:org] = UserInput.new(
         message: 'GitHub organization', default: options[:org]
       ).ask
