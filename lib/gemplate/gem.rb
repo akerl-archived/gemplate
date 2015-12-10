@@ -44,7 +44,8 @@ module Gemplate
 
     def dependencies
       source = "#{TEMPLATE}/../gemplate.gemspec"
-      File.read(source).lines.select { |x| x.include? 's.add_dev' }.join.strip
+      dev_deps = File.read(source).lines.select { |x| x.include? 's.add_dev' }
+      dev_deps.reject { |x| x.include? '# SKIP' }.join.strip
     end
 
     def add_license
