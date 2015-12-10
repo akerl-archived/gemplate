@@ -1,3 +1,11 @@
+# 2.0.3 / 2015-12-09
+
+* [BUGFIX] Fix dev dependency copying from gemspec to template
+
+# 2.0.2 / 2015-12-08
+
+* [BUGFIX] Fix script's org handling
+
 # 2.0.1 / 2015-11-14
 
 * [BUGFIX] Fix command line tool's argument prompting
