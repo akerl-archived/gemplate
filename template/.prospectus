@@ -1,0 +1,11 @@
+item do
+  expected do
+    static
+    set 'green'
+  end
+
+  actual do
+    gemnasium
+    slug 'AUTHOR_NAME/REPO_NAME'
+  end
+end
