@@ -1,8 +1,9 @@
+# frozen_string_literal: true
 require 'spec_helper'
 require 'fileutils'
 
 ROOT = Dir.pwd
-TEST_GEM_NAME = 'gemplate-test'
+TEST_GEM_NAME = 'gemplate-test'.freeze
 
 describe Gemplate do
   describe '#new' do
@@ -33,7 +34,7 @@ describe Gemplate do
         VCR.use_cassette('subject_create') do
           subject.create
         end
-        expect(Dir.exist? TEST_GEM_NAME).to be_truthy
+        expect(Dir.exist?(TEST_GEM_NAME)).to be_truthy
       end
 
       it 'raises an error if the directory already exists' do
@@ -47,7 +48,7 @@ describe Gemplate do
         VCR.use_cassette('subject_create') do
           subject.create
         end
-        expect(File.exist? "#{TEST_GEM_NAME}/LICENSE").to be_truthy
+        expect(File.exist?("#{TEST_GEM_NAME}/LICENSE")).to be_truthy
       end
 
       it 'fails if you try to pull a non-existent license' do
@@ -69,7 +70,7 @@ describe Gemplate do
           subject.create
         end
         expect(
-          File.read "#{TEST_GEM_NAME}/README.md"
+          File.read("#{TEST_GEM_NAME}/README.md")
         ).to_not match(/^REPO_NAME/)
       end
 
@@ -78,16 +79,16 @@ describe Gemplate do
           subject.create
         end
         expect(
-          File.exist? "#{TEST_GEM_NAME}/#{TEST_GEM_NAME}.gemspec"
+          File.exist?("#{TEST_GEM_NAME}/#{TEST_GEM_NAME}.gemspec")
         ).to be_truthy
-        expect(File.exist? "#{TEST_GEM_NAME}/REPO_NAME.gemspec").to be_falsey
+        expect(File.exist?("#{TEST_GEM_NAME}/REPO_NAME.gemspec")).to be_falsey
       end
 
       it 'makes the git repo' do
         VCR.use_cassette('subject_create') do
           subject.create
         end
-        expect(Dir.exist? "#{TEST_GEM_NAME}/.git").to be_truthy
+        expect(Dir.exist?("#{TEST_GEM_NAME}/.git")).to be_truthy
         [
           /remote\.origin\.url/,
           /branch\.master\.remote=origin/,

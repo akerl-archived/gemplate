@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rugged'
 require 'pathname'
 require 'fileutils'
@@ -8,8 +9,8 @@ require 'octokit'
 ##
 # Bootstrap tool for new gems
 module Gemplate
-  TEMPLATE = "#{Pathname.new(__FILE__).parent.parent.parent}/template"
-  LICENSE_URL = 'https://raw.githubusercontent.com/akerl/licenses/master'
+  TEMPLATE = "#{Pathname.new(__FILE__).parent.parent.parent}/template".freeze
+  LICENSE_URL = 'https://raw.githubusercontent.com/akerl/licenses/master'.freeze
 
   ##
   # Gem directory object
