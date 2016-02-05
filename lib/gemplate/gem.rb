@@ -39,7 +39,7 @@ module Gemplate
     private
 
     def create_directory
-      fail "#{@name} already exists" if File.exist? @name
+      raise "#{@name} already exists" if File.exist? @name
       FileUtils.cp_r TEMPLATE, @name
     end
 
@@ -54,7 +54,7 @@ module Gemplate
       File.open('LICENSE', 'w') do |fh|
         license = Curl::Easy.perform(url)
         if license.response_code == 404
-          fail ArgumentError, 'Invalid license name provided'
+          raise ArgumentError, 'Invalid license name provided'
         end
         fh.write license.body_str
       end
