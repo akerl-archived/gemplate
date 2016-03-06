@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'rugged', '~> 0.24.0'
   s.add_dependency 'userinput', '~> 1.0.0'
   s.add_dependency 'octoauth', '~> 1.4.0'
-  s.add_dependency 'octokit', '~> 4.2.0'
+  s.add_dependency 'octokit', '~> 4.3.0'
   s.add_dependency 'curb', '~> 0.9.0'
   s.add_dependency 'mercenary', '~> 0.3.4'
 
