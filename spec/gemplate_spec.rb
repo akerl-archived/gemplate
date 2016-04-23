@@ -29,6 +29,11 @@ describe Gemplate do
       FileUtils.rm_rf TEST_GEM_NAME
     end
 
+    after(:all) do
+      Dir.chdir "#{ROOT}/.test"
+      FileUtils.rm_rf TEST_GEM_NAME
+    end
+
     describe '#create' do
       it 'makes a directory from the template' do
         VCR.use_cassette('subject_create') do
