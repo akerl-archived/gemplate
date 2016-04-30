@@ -9,6 +9,9 @@ end
 
 require 'rspec'
 require 'gemplate'
+require 'webmock'
+
+WebMock.enable!
 
 require 'vcr'
 VCR.configure do |c|
