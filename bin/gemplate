@@ -6,6 +6,7 @@ require 'rugged'
 require 'curb'
 require 'mercenary'
 
+# rubocop:disable Metrics/BlockLength
 Mercenary.program(:gemplate) do |p|
   p.version Gemplate::VERSION
   p.description 'Tool for bootstrapping new gems'
