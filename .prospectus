@@ -9,8 +9,10 @@ def upstream_version
   fail('Failed to parse maint') unless maint.text.start_with? 'In security maintenance phase '
   [stable, maint].map do |type|
     type.css('li').map { |x| x.text.split("\n").first.split.last }
-  end.flatten.join(',')
+  end.flatten.join(', ')
 end
+
+UPSTREAM_VERSION = upstream_version
 
 item do
   expected do
@@ -30,15 +32,7 @@ item do
       expected do
         static
 
-        page = Nokogiri::HTML(open('https://www.ruby-lang.org/en/downloads/'))
-        table = page.xpath('//*[@id="content"]/ul[2]')
-        stable, maint, _ = table.xpath('li')
-        fail('Failed to parse stable') unless stable.text.start_with? 'Stable '
-        fail('Failed to parse maint') unless maint.text.start_with? 'In security maintenance phase '
-        val = [stable, maint].map do |type|
-          type.css('li').map { |x| x.text.split("\n").first.split.last }
-        end.flatten.join(', ')
-        set val
+        set UPSTREAM_VERSION
       end
 
       actual do
