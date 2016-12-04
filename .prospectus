@@ -4,12 +4,11 @@ Prospectus.extra_dep('file', 'nokogiri')
 def upstream_version
   page = Nokogiri::HTML(open('https://www.ruby-lang.org/en/downloads/'))
   table = page.xpath('//*[@id="content"]/ul[2]')
-  stable, maint, _ = table.xpath('li')
-  fail('Failed to parse stable') unless stable.text.start_with? 'Stable '
-  fail('Failed to parse maint') unless maint.text.start_with? 'In security maintenance phase '
-  [stable, maint].map do |type|
-    type.css('li').map { |x| x.text.split("\n").first.split.last }
-  end.flatten.join(', ')
+  categories = table.xpath('li').select do |x|
+    x.xpath('strong').text =~ /^(Stable|In security)/
+  end
+  versions = categories.map { |x| x.xpath('ul/li') }.flatten
+  versions.map { |x| x.text.split[1] }.join(', ')
 end
 
 UPSTREAM_VERSION = upstream_version
