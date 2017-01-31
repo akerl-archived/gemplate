@@ -2,6 +2,8 @@
 require 'spec_helper'
 require 'fileutils'
 
+# rubocop:disable Metrics/BlockLength
+
 ROOT = Dir.pwd
 TEST_GEM_NAME = 'gemplate-test'.freeze
 
