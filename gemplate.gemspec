@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.test_files  = `git ls-files spec/*`.split
   s.executables = ['gemplate']
 
-  s.add_dependency 'rugged', '~> 0.25.0'
+  s.add_dependency 'rugged', '~> 0.26.0'
   s.add_dependency 'userinput', '~> 1.0.0'
   s.add_dependency 'octoauth', '~> 1.4.7'
   s.add_dependency 'octokit', '~> 4.7.0'
