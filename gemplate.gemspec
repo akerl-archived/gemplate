@@ -1,6 +1,8 @@
-$:.unshift File.expand_path('../lib/', __FILE__)
+require 'English'
+$LOAD_PATH.unshift File.expand_path('../lib/', __FILE__)
 require 'gemplate/version'
 
+# rubocop:disable Metrics/BlockLength
 Gem::Specification.new do |s|
   s.name        = 'gemplate'
   s.version     = Gemplate::VERSION
@@ -30,6 +32,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'codecov', '~> 0.1.1'
   s.add_development_dependency 'rspec', '~> 3.6.0'
   s.add_development_dependency 'fuubar', '~> 2.2.0'
-  s.add_development_dependency 'webmock', '~> 3.0.0' # SKIP WHEN COPYING TO TEMPLATE
-  s.add_development_dependency 'vcr', '~> 3.0.0' # SKIP WHEN COPYING TO TEMPLATE
+  s.add_development_dependency 'webmock', '~> 3.0.0' # SKIP WHEN COPYING TO TEMPLATE # rubocop:disable Metrics/LineLength
+  s.add_development_dependency 'vcr', '~> 3.0.0' # SKIP WHEN COPYING TO TEMPLATE # rubocop:disable Metrics/LineLength
 end

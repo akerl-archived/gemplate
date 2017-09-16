@@ -69,7 +69,7 @@ module Gemplate
         [/REPO_NAME/, @name],
         [/EMAIL_ADDRESS/, @email],
         [/CURRENT_YEAR/, Time.now.strftime('%Y')],
-        [/#DEV_DEPS/, dependencies]
+        [/# DEV_DEPS/, dependencies]
       ]
     end
 
@@ -83,9 +83,9 @@ module Gemplate
     end
 
     def adjust_files
-      moves = [['REPO_NAME.gemspec', "#{@name}.gemspec"],
-               ['lib/REPO_NAME.rb', "lib/#{@name}.rb"],
-               ['spec/REPO_NAME_spec.rb', "spec/#{@name}_spec.rb"]]
+      moves = [['repo_name.gemspec', "#{@name}.gemspec"],
+               ['lib/repo_name.rb', "lib/#{@name}.rb"],
+               ['spec/repo_name_spec.rb', "spec/#{@name}_spec.rb"]]
       moves.each { |original, new| FileUtils.move original, new }
     end
 
