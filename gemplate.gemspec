@@ -19,19 +19,19 @@ Gem::Specification.new do |s|
   s.test_files  = `git ls-files spec/*`.split
   s.executables = ['gemplate']
 
-  s.add_dependency 'rugged', '~> 0.26.0'
-  s.add_dependency 'userinput', '~> 1.0.0'
-  s.add_dependency 'octoauth', '~> 1.4.7'
-  s.add_dependency 'octokit', '~> 4.7.0'
   s.add_dependency 'curb', '~> 0.9.0'
   s.add_dependency 'mercenary', '~> 0.3.4'
+  s.add_dependency 'octoauth', '~> 1.4.7'
+  s.add_dependency 'octokit', '~> 4.7.0'
+  s.add_dependency 'rugged', '~> 0.26.0'
+  s.add_dependency 'userinput', '~> 1.0.0'
 
-  s.add_development_dependency 'rubocop', '~> 0.51.0'
+  s.add_development_dependency 'codecov', '~> 0.1.1'
+  s.add_development_dependency 'fuubar', '~> 2.2.0'
   s.add_development_dependency 'goodcop', '~> 0.1.0'
   s.add_development_dependency 'rake', '~> 12.1.0'
-  s.add_development_dependency 'codecov', '~> 0.1.1'
   s.add_development_dependency 'rspec', '~> 3.7.0'
-  s.add_development_dependency 'fuubar', '~> 2.2.0'
-  s.add_development_dependency 'webmock', '~> 3.1.0' # SKIP WHEN COPYING TO TEMPLATE # rubocop:disable Metrics/LineLength
+  s.add_development_dependency 'rubocop', '~> 0.51.0'
   s.add_development_dependency 'vcr', '~> 3.0.0' # SKIP WHEN COPYING TO TEMPLATE # rubocop:disable Metrics/LineLength
+  s.add_development_dependency 'webmock', '~> 3.1.0' # SKIP WHEN COPYING TO TEMPLATE # rubocop:disable Metrics/LineLength
 end
