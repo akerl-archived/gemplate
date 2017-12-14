@@ -69,3 +69,4 @@ Mercenary.program(:gemplate) do |p|
     puts 'New gem has been created!'
   end
 end
+# rubocop:enable Metrics/BlockLength
