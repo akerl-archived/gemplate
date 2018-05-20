@@ -1,6 +1,7 @@
 require 'open-uri'
 Prospectus.extra_dep('file', 'nokogiri')
 Prospectus.extra_dep('file', 'prospectus_circleci')
+Prospectus.extra_dep('file', 'prospectus_gems')
 
 def upstream_version
   page = Nokogiri::HTML(open('https://www.ruby-lang.org/en/downloads/'))
@@ -21,20 +22,6 @@ item do
 
   deps do
     item do
-      name 'gems'
-
-      expected do
-        static
-        set 'green'
-      end
-
-      actual do
-        gemnasium
-        slug my_slug
-      end
-    end
-
-    item do
       name 'ruby'
 
       expected do
@@ -51,4 +38,5 @@ item do
   end
 
   extend ProspectusCircleci::Build.new(my_slug)
+  extend ProspectusGems::Gemspec.new
 end
