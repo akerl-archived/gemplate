@@ -1,3 +1,15 @@
+# 2.1.0 / 2018-06-23
+
+* [ENHANCEMENT] Deprecate Ruby 2.2
+
+# 2.0.5 / 2016-08-07
+
+* [ENHANCEMENT] Improve circle RVM handling
+
+# 2.0.4 / 2015-12-29
+
+* [FEATURE] Add prospectus template
+
 # 2.0.3 / 2015-12-09
 
 * [BUGFIX] Fix dev dependency copying from gemspec to template
