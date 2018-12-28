@@ -33,6 +33,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rspec', '~> 3.8.0'
   s.add_development_dependency 'rubocop', '~> 0.61.1'
   s.add_development_dependency 'vcr', '~> 4.0.0' # SKIP WHEN COPYING TO TEMPLATE # rubocop:disable Metrics/LineLength
-  s.add_development_dependency 'webmock', '~> 3.4.0' # SKIP WHEN COPYING TO TEMPLATE # rubocop:disable Metrics/LineLength
+  s.add_development_dependency 'webmock', '~> 3.5.1' # SKIP WHEN COPYING TO TEMPLATE # rubocop:disable Metrics/LineLength
 end
 # rubocop:enable Metrics/BlockLength
