@@ -31,7 +31,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'goodcop', '~> 0.6.0'
   s.add_development_dependency 'rake', '~> 12.3.0'
   s.add_development_dependency 'rspec', '~> 3.8.0'
-  s.add_development_dependency 'rubocop', '~> 0.65.0'
+  s.add_development_dependency 'rubocop', '~> 0.66.0'
   s.add_development_dependency 'vcr', '~> 4.0.0' # SKIP WHEN COPYING TO TEMPLATE # rubocop:disable Metrics/LineLength
   s.add_development_dependency 'webmock', '~> 3.5.1' # SKIP WHEN COPYING TO TEMPLATE # rubocop:disable Metrics/LineLength
 end
